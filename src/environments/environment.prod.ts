@@ -19,5 +19,5 @@ const firebase: FirebaseInterface =  {
 export const environment = {
   production: true,
   firebase,
-  apiUrl: 'http://localhost:3000/api/v1'
+  apiUrl: 'https://fcc-night.herokuapp.com/api/v1'
 };
