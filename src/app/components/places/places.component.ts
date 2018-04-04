@@ -43,7 +43,9 @@ export class PlacesComponent implements OnInit {
   }
 
   getAddress(place) {
-    const { address1, address2, address3, city, country } = place.location;
+    const {
+      address1 = '', address2 = '', address3 = '', city = '', country = ''
+    } = place.location;
 
     return `${address1} ${address2} ${address3} ${city} ${country}`;
   }
