@@ -9,7 +9,7 @@
         <input matInput placeholder="Enter Your Location" [formControl]="search" />
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="searchYelp(search.value, '6', '0')">Find Night Life</button>
-      <a href="#" class="cancel" (click)="showSearch = false">cancel</a>
+      <a *ngIf="places" href="#" class="cancel" (click)="showSearch = false">cancel</a>
     </div>
 
   </div>
