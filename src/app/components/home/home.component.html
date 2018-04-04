@@ -1,0 +1,27 @@
+<div class="center">
+  <button *ngIf="!showSearch" mat-raised-button class="showSearch" color="primary" (click)="showSearch=true">
+    UPDATE YOUR LOCATION <mat-icon aria-label="change location">search</mat-icon>
+  </button>
+  <div class="center-item" *ngIf="!loading && showSearch">
+    <h2>SOME FUN TONIGHT?</h2>
+    <div class="search" >
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Enter Your Location" [formControl]="search" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="searchYelp(search.value, '6', '0')">Find Night Life</button>
+      <a href="#" class="cancel" (click)="showSearch = false">cancel</a>
+    </div>
+
+  </div>
+  <mat-progress-spinner mode="indeterminate" *ngIf="loading" class="spinner"></mat-progress-spinner>
+
+  <!-- places -->
+</div>
+<app-places
+  *ngIf="!showSearch && places"
+  [places]="places" [user]="user"
+  [parentLoading]="loading"
+  (loadMore)="loadMore($event)"
+  [parentOffset]="offset"
+>
+</app-places>

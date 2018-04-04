@@ -1,0 +1,45 @@
+<div class="places" *ngIf="!parentLoading">
+  <mat-card class="place" *ngFor="let place of places; let index = index" [attr.data-index]="index">
+    <mat-card-header>
+      <div mat-card-avatar [style.background]="getImageStyle(place)"></div>
+      <mat-card-title>{{place.name}}</mat-card-title>
+      <mat-card-subtitle>{{place.phone}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="place.image_url" alt="Photo of a Shiba Inu" height="200" width="auto" class="mat-image">
+    <mat-card-content>
+      <p>
+        {{getAddress(place)}}
+        <br/> <span class="going">{{place?.placeCount?.count}} going.</span>
+      </p>
+    </mat-card-content>
+    <mat-card-actions *ngIf="user && places[index]?.currentPlace">
+      <button
+        [disabled] = "loading[place.id]"
+        *ngIf="!places[index]?.currentPlace[getPeriod(date)]?.going"
+        (click)="indicateGoing(place, index, places[index]?.currentPlace[getPeriod(date)]?.going)"
+        mat-button
+      >
+        GOING TODAY ?
+      </button>
+      <button
+        [disabled] = "loading[place.id]"
+        *ngIf="places[index]?.currentPlace[getPeriod(date)]?.going"
+        (click)="indicateGoing(place, index, places[index]?.currentPlace[getPeriod(date)]?.going)"
+        mat-button
+      >
+        NOT GOING ?
+      </button>
+      <div class="attend" *ngIf="places[index]?.currentPlace[getPeriod(date)]?.going">WILL ATTEND<mat-icon aria-label="change location">check</mat-icon></div>
+    </mat-card-actions>
+
+    <mat-card-actions *ngIf="!user">
+        <button (click)="login()" mat-button>GOING TODAY ?</button>
+    </mat-card-actions>
+    <mat-progress-spinner mode="indeterminate" *ngIf="loading[place.id]" class="spinner"></mat-progress-spinner>
+  </mat-card>
+</div>
+<!-- pagination -->
+<div class="center more" *ngIf="!parentLoading">
+  <button [disabled]="parentOffset == 0" (click)="loadBars(-6)" mat-button>LOAD PREVIOUS PLACES</button>
+  <button (click)="loadBars(6)" mat-button>LOAD MORE PLACES</button>
+</div>

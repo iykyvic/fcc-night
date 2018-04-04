@@ -1,0 +1,17 @@
+.nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #eeeeee;
+
+  span {
+    margin-right: -10px;
+    margin-left: auto;
+
+    img {
+      border-radius: 50%;
+      margin-bottom: -10px;
+      background-size: cover;
+    }
+  }
+}

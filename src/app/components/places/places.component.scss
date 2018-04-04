@@ -1,0 +1,42 @@
+.places {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.place {
+  max-width: 400px;
+  margin: 1vw
+}
+
+.mat-image {
+  background-size: contain;
+  max-height: 150px
+}
+
+mat-card-actions {
+  display: flex;
+  button: {
+    margin-left: auto
+  }
+}
+
+.spinner {
+  display: block;
+  margin-top: -40%;
+  left: 35%;
+}
+
+.attend {
+  margin-left: auto
+}
+
+.going {
+  color: green;
+}
+
+.more {
+  margin-top: 20px;
+  margin-bottom: 20px
+}

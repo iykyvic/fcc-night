@@ -1,0 +1,180 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:400,300,700');
+
+$min_width: 320px;
+$max_width: 1200px;
+$min_font: 12px;
+$max_font: 20px;
+$mod_1: 1.2; // mobile
+$mod_2: 1.5; // desktop
+
+@function strip-unit($value) {
+  @return $value / ($value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(#{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} * ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)}));
+        margin: 0;
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+        margin: 0;
+      }
+    }
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+}
+
+
+body {
+  margin: 0;
+  color: #333333;
+  font-family: 'Open Sans'
+}
+
+html, body, p, h1, h2, h3, h4, h5, a {
+  font-family: 'Open Sans', Georgia, sans-serif;
+}
+
+h1 {
+  font-size: $mod_1*$mod_1*$mod_1*$mod_1 *1rem;
+  @include fluid-type($min_width, $max_width, $mod_1*$mod_1*$mod_1 *$min_font, $mod_2*$mod_2*$mod_2 *$min_font);
+}
+h2 {
+  font-size: $mod_1*$mod_1*$mod_1 *1rem;
+  @include fluid-type($min_width, $max_width, $mod_1*$mod_1*$mod_1 *$min_font, $mod_2*$mod_2*$mod_2 *$min_font);
+}
+h3 {
+  font-size: $mod_1*$mod_1 *1rem;
+  @include fluid-type($min_width, $max_width, $mod_1*$mod_1 *$min_font, $mod_2*$mod_2 *$min_font);
+}
+
+.main {
+  padding: 5vw;
+}
+
+.flex {
+  display: flex;
+  width: 100%;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between center;
+
+  .flex-item {
+    flex: 1;
+    margin: 20px 0 20px 0;
+  }
+
+  .one-half {
+    max-width: 48%;
+  }
+
+  .one-third {
+    max-width: 22%;
+  }
+
+  .two-third {
+    max-width: 75%;
+  }
+
+  .padding-left {
+    padding: 0 0 0 6%;
+  }
+}
+
+.left {
+  text-align: left;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+  background-color: #444444 !important;
+}
+
+.icon-button {
+  font-size: 20px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-item {
+  margin-top: 10vw;
+  max-width: 60vw;
+}
+
+.center-item--top {
+  align-self: flex-start;
+}
+
+.center-item--bottom {
+  align-self: flex-end;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 1vw;
+  min-height: calc(100vh - 64px);
+}
+
+
+.showSearch {
+  display: block;
+  position: absolute !important;
+  top: 15px;
+  font-weight: 900
+}
+
+@media only screen and (max-width: 767px) {
+  .showSearch {
+    top: 70px;
+  }
+  .main {
+    margin-top: 60px;
+  }
+}
+
+@media all and (max-width: 1200px) {
+  .flex {
+    display: block;
+    justify-content: space-around;
+
+    .one-half {
+      width: 100%;
+    }
+
+    .one-third {
+      max-width: 22%;
+    }
+
+    .two-third {
+      max-width: 75%;
+    }
+  }
+}

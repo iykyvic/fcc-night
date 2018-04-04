@@ -1,0 +1,10 @@
+<mat-toolbar class="nav">
+  <h1>{{title}}</h1>
+  <span *ngIf="user | async as currentUser ">
+    <img [src]="currentUser.photoURL" width="30" height="30"/>
+    <button *ngIf="currentUser" mat-button (click)="logout()" color="primary"><mat-icon class="icon-button">lock open</mat-icon>LOGOUT</button>
+  </span>
+  <span  *ngIf="!(user | async)">
+    <button mat-button (click)="login()" color="primary"><mat-icon class="icon-button">lock open</mat-icon>LOGIN</button>
+  </span>
+</mat-toolbar>
