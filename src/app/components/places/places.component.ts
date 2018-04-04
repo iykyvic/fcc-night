@@ -47,7 +47,7 @@ export class PlacesComponent implements OnInit {
       address1 = '', address2 = '', address3 = '', city = '', country = ''
     } = place.location;
 
-    return `${address1} ${address2} ${address3} ${city} ${country}`;
+    return `${address1} ${address2} ${address3} ${city} ${country}`.replace('null', '');
   }
 
   getImageStyle(place) {
